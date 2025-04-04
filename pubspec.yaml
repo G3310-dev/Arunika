@@ -34,6 +34,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  camera: ^0.11.1
+  tflite_v2: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +47,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  image_picker: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -61,6 +64,7 @@ flutter:
   assets:
     - asset/image/
     - asset/icon/
+    - asset/tensor/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.gdev.arunika"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -35,6 +35,11 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
+        }
+        getByName("release") {
+            isMinifyEnabled = true // Enable code shrinking
+            isShrinkResources = true // Enable resource shrinking
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
 }

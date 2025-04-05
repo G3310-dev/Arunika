@@ -93,7 +93,9 @@ class _DisabilitasState extends State<Disabilitas> {
       threshold: 0.5,
     );
 
-    print("Recognitions: $recognitions"); // Debug print
+    if (kDebugMode) {
+      print("Recognitions: $recognitions");
+    } // Debug print
 
     setState(() {
       this.recognitions = recognitions;

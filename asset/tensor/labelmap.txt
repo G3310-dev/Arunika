@@ -1,91 +1,91 @@
 ???
-person
-bicycle
-car
-motorcycle
-airplane
-bus
-train
-truck
-boat
-traffic light
-fire hydrant
+orang
+sepeda
+mobil
+motor
+pesawat
+bis
+kereta
+truk
+perahu
+lampu lalu lintas
+hydrant kebakaran
 ???
-stop sign
-parking meter
-bench
-bird
-cat
-dog
-horse
-sheep
-cow
-elephant
-bear
+tanda berhenti
+meteran parkir
+bangku
+burung
+kucing
+anjing
+kuda
+domba
+sapi
+gajah
+beruang
 zebra
-giraffe
+jirafah
 ???
-backpack
-umbrella
+ransel
+payung
 ???
 ???
-handbag
-tie
-suitcase
+tas tangan
+dasi
+koper
 frisbee
-skis
+ski
 snowboard
-sports ball
-kite
-baseball bat
-baseball glove
+bola olahraga
+layang-layang
+bat baseball
+sarung tangan baseball
 skateboard
-surfboard
-tennis racket
-bottle
+papan selancar
+raket tenis
+botol
 ???
-wine glass
-cup
-fork
-knife
-spoon
-bowl
-banana
-apple
+gelas anggur
+cangkir
+garpu
+pisau
+sendok
+mangkuk
+pisang
+apel
 sandwich
-orange
-broccoli
-carrot
+jeruk
+brokoli
+wortel
 hot dog
 pizza
-donut
-cake
-chair
-couch
-potted plant
-bed
+donat
+kue
+kursi
+sofa
+tanaman pot
+tempat tidur
 ???
-dining table
+meja makan
 ???
 ???
 toilet
 ???
-tv
+televisi
 laptop
 mouse
 remote
-keyboard
-cell phone
+papan ketik
+telepon seluler
 microwave
 oven
-toaster
-sink
-refrigerator
+pemanggang roti
+wastafel
+kulkas
 ???
-book
-clock
-vase
-scissors
-teddy bear
-hair drier
-toothbrush
+buku
+jam
+vas
+gunting
+boneka beruang
+pengering rambut
+sikat gigi

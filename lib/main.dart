@@ -1,11 +1,18 @@
 import 'package:arunika/Page/get_started.dart';
 import 'package:camera/camera.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'Page/home.dart';
+import 'Wrapper/auth_wrapper.dart';
 import 'Wrapper/route_wrapper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final cameras = await availableCameras();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp(cameras: cameras,));
 }
 
@@ -14,98 +21,41 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        Provider<AuthWrap>(
+          create: (_) => AuthWrap(FirebaseAuth.instance),
+        ),
+        StreamProvider<User?>(
+          create: (context) => context.read<AuthWrap>().authStateChanges,
+          initialData: null,
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.cyan,
+          useMaterial3: true,
+        ),
+        onGenerateRoute: Routing.generateRoute,
+        home: AuthenticationWrapper(camera: availableCameras()),
       ),
-      onGenerateRoute: Routing.generateRoute,
-      home: GetStarted(camera: availableCameras()),
     );
   }
 }
 
-// import 'package:flutter/material.dart';
-// import 'package:camera/camera.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:tflite_v2/tflite_v2.dart';
-//
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   final cameras = await availableCameras();
-//   runApp(MyApp(cameras: cameras));
-// }
-//
-// class MyApp extends StatelessWidget {
-//   final List<CameraDescription> cameras;
-//
-//   const MyApp({Key? key, required this.cameras});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: RealTimeObjectDetection(
-//         cameras: cameras,
-//       ),
-//     );
-//   }
-// }
 
-// class RealTimeObjectDetection extends StatefulWidget {
-//   final List<CameraDescription> cameras;
-//
-//   RealTimeObjectDetection({required this.cameras});
-//
-//   @override
-//   _RealTimeObjectDetectionState createState() =>
-//       _RealTimeObjectDetectionState();
-// }
-//
-// class _RealTimeObjectDetectionState extends State<RealTimeObjectDetection> {
-//
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     if (!_controller.value.isInitialized) {
-//       return Container();
-//     }
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Real-time Object Detection')),
-//       body: Column(
-//         // mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Container(
-//             width: MediaQuery.of(context).size.width,
-//             height: MediaQuery.of(context).size.height * 0.8,
-//             child: Stack(
-//               children: [
-//                 CameraPreview(_controller),
-//                 if (recognitions != null)
-//                   BoundingBoxes(
-//                     recognitions: recognitions!,
-//                     previewH: imageHeight.toDouble(),
-//                     previewW: imageWidth.toDouble(),
-//                     screenH: MediaQuery.of(context).size.height * 0.8,
-//                     screenW: MediaQuery.of(context).size.width,
-//                   ),
-//               ],
-//             ),
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               IconButton(
-//                 onPressed: () {
-//                   toggleCamera();
-//                 },
-//                 icon: Icon(Icons.camera_front, size: 30),
-//               ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+class AuthenticationWrapper extends StatelessWidget {
+  const AuthenticationWrapper({super.key, required Future<List<CameraDescription>> camera});
+
+  @override
+  Widget build(BuildContext context) {
+    final firebaseUser  = context.watch<User?>();
+
+    if (firebaseUser  != null) {
+      return Home();
+    } else {
+      return GetStarted(camera: availableCameras());
+    }
+  }
+}

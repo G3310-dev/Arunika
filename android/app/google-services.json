@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "428706374645",
+    "project_id": "runika-4510b",
+    "storage_bucket": "runika-4510b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428706374645:android:989dde23fdaf141cb3f6bc",
+        "android_client_info": {
+          "package_name": "com.gdev.arunika"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428706374645-g861gclhk49bbucjuiaa73lmpro3lml3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gdev.arunika",
+            "certificate_hash": "bd6b2cce7453a8ccb6608ee9582e5a84000e91e5"
+          }
+        },
+        {
+          "client_id": "428706374645-tqpuc0rlp024gqv5hbumkimuh6188r4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2V0CuAp_QkEc2LW_wSl85zl3DkuIBLcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428706374645-tqpuc0rlp024gqv5hbumkimuh6188r4g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

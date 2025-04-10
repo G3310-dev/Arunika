@@ -1,8 +1,10 @@
+import 'package:arunika/Component/icon_button.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 import '../Component/bounding_box.dart';
+import '../Component/text_model.dart';
 
 class Disabilitas extends StatefulWidget {
   const Disabilitas({super.key});
@@ -47,14 +49,6 @@ class _DisabilitasState extends State<Disabilitas> {
     });
   }
 
-  void toggleCamera() {
-    CameraDescription newDescription;
-    newDescription = cameras.firstWhere(
-          (description) => description.lensDirection == CameraLensDirection.back,
-    );
-    initializeCamera(newDescription);
-  }
-
   void initializeCamera(CameraDescription description) async {
     _controller = CameraController(
       description,
@@ -95,12 +89,12 @@ class _DisabilitasState extends State<Disabilitas> {
 
     if (kDebugMode) {
       print("Recognitions: $recognitions");
-    } // Debug print
+    }
 
     setState(() {
       this.recognitions = recognitions;
-      imageHeight = image.height; // Update image height
-      imageWidth = image.width; // Update image width
+      imageHeight = image.height;
+      imageWidth = image.width;
     });
   }
 
@@ -110,12 +104,31 @@ class _DisabilitasState extends State<Disabilitas> {
       return Container();
     }
     return Scaffold(
-      appBar: AppBar(title: Text('Real-time Object Detection')),
       body: Column(
         children: [
+          SizedBox(height: MediaQuery.sizeOf(context).height*0.05),
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(bottom: 5, left: 10),
+                  child: Icon(Icons.arrow_back_ios_new_rounded,
+                    size: 30,
+                    weight: 50,
+                    color: Color(0xFF5285AB),
+                  )
+                ),
+                SizedBox(width: 10,),
+                TextWidget(size: 25.0, content: "Layanan Tunanetra", type: 2, colour: 0xFF5285AB, alignment: TextAlign.left,)
+              ],
+            ),
+          ),
+          SizedBox(height: 10,),
           SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.8,
+            width: MediaQuery.of(context).size.width*0.93,
+            height: MediaQuery.of(context).size.height * 0.81,
+
             child: Stack(
               children: [
                 CameraPreview(_controller),
@@ -129,6 +142,18 @@ class _DisabilitasState extends State<Disabilitas> {
                   ),
               ],
             ),
+          ),
+          Center(
+            child: ButtonIconDef(
+                width: MediaQuery.sizeOf(context).width*0.9,
+                height: MediaQuery.sizeOf(context).height*0.05,
+                type: 1,
+                onTap: (){},
+                icon: Icon(Icons.emergency,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                text: "Layanan Lainnya", size: 19,),
           ),
         ],
       ),

@@ -25,7 +25,7 @@ class GetStarted extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(bottom: 5, left: 5),
+                          margin: EdgeInsets.only(bottom: 5, left: 10),
                           child: Image.asset("asset/icon/sun.png",
                             width: 45,
                             height: 45,
@@ -82,9 +82,7 @@ class GetStarted extends StatelessWidget {
                         width: MediaQuery.sizeOf(context).width*0.9,
                         height: MediaQuery.sizeOf(context).height*0.04,
                         type: 1,
-                        onTap: (){
-                          Navigator.pushNamed(context, "/signIn");
-                        },
+                        onTap: () => Navigator.pushNamed(context, "/login"),
                         text: "Yuk Mulai!", size: 15),
                   ),
                   const SizedBox(height: 3,),

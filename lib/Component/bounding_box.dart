@@ -61,6 +61,7 @@ class _BoundingBoxesState extends State<BoundingBoxes> {
 
         if (detectedClass != lastSpokenClass) {
           await flutterTts.setLanguage("id-ID");
+          await flutterTts.setVoice({"name": "Karen", "locale": "id-ID"});
           await flutterTts.setPitch(1.0);
           await flutterTts.speak("Di $direction anda ada $detectedClass");
           lastSpokenClass = detectedClass;

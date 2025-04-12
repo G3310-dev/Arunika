@@ -34,7 +34,7 @@ class _PolaHidupState extends State<PolaHidup> {
   @override
   void initState() {
     super.initState();
-    _model = GenerativeModel(model: 'gemini-2.0-flash', apiKey: 'AIzaSyB4pu0Ll_P2IQej15RumbUsYBE8B-dSdJk');
+    _model = GenerativeModel(model: 'gemini-2.0-flash', apiKey: 'APIKEY');
   }
 
   @override

@@ -1,22 +1,61 @@
 import 'package:arunika/Page/get_started.dart';
+import 'package:camera/camera.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'Page/home.dart';
+import 'Wrapper/auth_wrapper.dart';
+import 'Wrapper/route_wrapper.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final cameras = await availableCameras();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp(cameras: cameras,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required List<CameraDescription> cameras});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        Provider<AuthWrap>(
+          create: (_) => AuthWrap(FirebaseAuth.instance),
+        ),
+        StreamProvider<User?>(
+          create: (context) => context.read<AuthWrap>().authStateChanges,
+          initialData: null,
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.cyan,
+          useMaterial3: true,
+        ),
+        onGenerateRoute: Routing.generateRoute,
+        home: AuthenticationWrapper(camera: availableCameras()),
       ),
-      home: const GetStarted(),
     );
+  }
+}
+
+
+class AuthenticationWrapper extends StatelessWidget {
+  const AuthenticationWrapper({super.key, required Future<List<CameraDescription>> camera});
+
+  @override
+  Widget build(BuildContext context) {
+    final firebaseUser  = context.watch<User?>();
+
+    if (firebaseUser  != null) {
+      return Home();
+    } else {
+      return GetStarted(camera: availableCameras());
+    }
   }
 }

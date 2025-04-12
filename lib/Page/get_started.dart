@@ -1,12 +1,13 @@
+import 'package:arunika/Page/disabilitas.dart';
+import 'package:camera_platform_interface/src/types/camera_description.dart';
 import 'package:flutter/material.dart';
 
 import '../Component/button.dart';
 import '../Component/orline.dart';
 import '../Component/text_model.dart';
 
-
 class GetStarted extends StatelessWidget {
-  const GetStarted({super.key});
+  const GetStarted({super.key, required Future<List<CameraDescription>> camera});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +24,18 @@ class GetStarted extends StatelessWidget {
                     SizedBox(height: MediaQuery.sizeOf(context).height*0.05),
                     Row(
                       children: [
+                        Container(
+                          margin: EdgeInsets.only(bottom: 5, left: 10),
+                          child: Image.asset("asset/icon/sun.png",
+                            width: 45,
+                            height: 45,
+                          ),
+                        ),
+                        SizedBox(width: 10,),
                         TextWidget(size: 30.0, content: "Arunika", type: 2, colour: 0xFF5285AB, alignment: TextAlign.left)
                       ],
                     ),
+                    SizedBox(height: 10,),
                     Container(
                       width: double.infinity,
                       height: MediaQuery.sizeOf(context).height*0.45,
@@ -72,9 +82,7 @@ class GetStarted extends StatelessWidget {
                         width: MediaQuery.sizeOf(context).width*0.9,
                         height: MediaQuery.sizeOf(context).height*0.04,
                         type: 1,
-                        onTap: (){
-                          Navigator.pushNamed(context, "/signIn");
-                        },
+                        onTap: () => Navigator.pushNamed(context, "/login"),
                         text: "Yuk Mulai!", size: 15),
                   ),
                   const SizedBox(height: 3,),
@@ -86,9 +94,11 @@ class GetStarted extends StatelessWidget {
                         height: MediaQuery.sizeOf(context).height*0.05,
                         type: 2,
                         onTap: (){
-                          Navigator.pushNamed(context, "/signUp");
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => const Disabilitas()),
+                          );
                         },
-                        text: "Sudah punya akun", size: 16),
+                        text: "Layanan Disabilitas", size: 16),
                   ),
                 ],
               ),

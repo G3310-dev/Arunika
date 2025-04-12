@@ -1,5 +1,4 @@
 import 'package:arunika/Component/action_bar.dart';
-import 'package:arunika/main.dart';
 import 'package:flutter/material.dart';
 
 import '../Component/drawer.dart';
@@ -62,26 +61,29 @@ class Home extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width*0.42,
-                      height: MediaQuery.of(context).size.height*0.18,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: const DecorationImage(
-                          image: AssetImage("asset/image/item2.png"),
-                          fit: BoxFit.cover
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset("asset/icon/icontem2.png",
-                            width: 80,
-                            height: 80,
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, "/kesehatan"),
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: MediaQuery.of(context).size.width*0.42,
+                        height: MediaQuery.of(context).size.height*0.18,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: const DecorationImage(
+                            image: AssetImage("asset/image/item2.png"),
+                            fit: BoxFit.cover
                           ),
-                          TextWidget(size: 19.0, content: "Kesehatan Anda", type: 2, colour: 0xFFFFFFFF, alignment: TextAlign.start),
-                        ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("asset/icon/icontem2.png",
+                              width: 80,
+                              height: 80,
+                            ),
+                            TextWidget(size: 19.0, content: "Kesehatan Anda", type: 2, colour: 0xFFFFFFFF, alignment: TextAlign.start),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width*0.02,),
@@ -104,18 +106,21 @@ class Home extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                        Container(
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width*0.42,
-                          height: MediaQuery.of(context).size.height*0.085,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            image: const DecorationImage(
-                                image: AssetImage("asset/image/item4.png"),
-                                fit: BoxFit.cover
+                        GestureDetector(
+                          onTap: () => Navigator.pushNamed(context, "/obat"),
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: MediaQuery.of(context).size.width*0.42,
+                            height: MediaQuery.of(context).size.height*0.085,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: const DecorationImage(
+                                  image: AssetImage("asset/image/item4.png"),
+                                  fit: BoxFit.cover
+                              ),
                             ),
+                            child: TextWidget(size: 19.0, content: "Obat Anda", type: 2, colour: 0xFFFFFFFF, alignment: TextAlign.start),
                           ),
-                          child: TextWidget(size: 19.0, content: "Obat Anda", type: 2, colour: 0xFFFFFFFF, alignment: TextAlign.start),
                         ),
                       ],
                     ),
@@ -136,32 +141,38 @@ class Home extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        Container(
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width*0.42,
-                          height: MediaQuery.of(context).size.height*0.085,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            image: const DecorationImage(
-                                image: AssetImage("asset/image/item5.png"),
-                                fit: BoxFit.cover
+                        GestureDetector(
+                          onTap: () => Navigator.pushNamed(context, "/konsultasi"),
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: MediaQuery.of(context).size.width*0.42,
+                            height: MediaQuery.of(context).size.height*0.085,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: const DecorationImage(
+                                  image: AssetImage("asset/image/item5.png"),
+                                  fit: BoxFit.cover
+                              ),
                             ),
+                            child: TextWidget(size: 19.0, content: "Konsultasi", type: 2, colour: 0xFFFFFFFF, alignment: TextAlign.start),
                           ),
-                          child: TextWidget(size: 19.0, content: "Konsultasi", type: 2, colour: 0xFFFFFFFF, alignment: TextAlign.start),
                         ),
                         SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                        Container(
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width*0.42,
-                          height: MediaQuery.of(context).size.height*0.085,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            image: const DecorationImage(
-                                image: AssetImage("asset/image/item6.png"),
-                                fit: BoxFit.cover
+                        GestureDetector(
+                          onTap: () => Navigator.pushNamed(context, '/bantuan'),
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: MediaQuery.of(context).size.width*0.42,
+                            height: MediaQuery.of(context).size.height*0.085,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: const DecorationImage(
+                                  image: AssetImage("asset/image/item6.png"),
+                                  fit: BoxFit.cover
+                              ),
                             ),
+                            child: TextWidget(size: 19.0, content: "Bantuan Lanjut", type: 2, colour: 0xFFFFFFFF, alignment: TextAlign.start),
                           ),
-                          child: TextWidget(size: 19.0, content: "Bantuan Lanjut", type: 2, colour: 0xFFFFFFFF, alignment: TextAlign.start),
                         ),
                       ],
                     ),

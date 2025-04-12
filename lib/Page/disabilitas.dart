@@ -148,7 +148,14 @@ class _DisabilitasState extends State<Disabilitas> {
                 width: MediaQuery.sizeOf(context).width*0.9,
                 height: MediaQuery.sizeOf(context).height*0.05,
                 type: 1,
-                onTap: (){},
+                onTap: (){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Fitur ini akan hadir pada versi berikutnya'),
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
+                },
                 icon: Icon(Icons.emergency,
                   color: Colors.white,
                   size: 30,

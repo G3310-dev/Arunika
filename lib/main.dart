@@ -7,12 +7,13 @@ import 'package:provider/provider.dart';
 import 'Page/home.dart';
 import 'Wrapper/auth_wrapper.dart';
 import 'Wrapper/route_wrapper.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final cameras = await availableCameras();
-  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  tz.initializeTimeZones();
   runApp(MyApp(cameras: cameras,));
 }
 

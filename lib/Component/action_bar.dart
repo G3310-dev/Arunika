@@ -31,7 +31,7 @@ class _ActionBarState extends State<ActionBar> {
           const SizedBox(width: 10,),
           Padding(
             padding: const EdgeInsets.only(top: 7.0),
-            child: TextWidget(size: 25.0, content: "Halo Sobat!", type: 2, colour: 0xFF5285AB, alignment: TextAlign.left),
+            child: TextWidget(size: 25.0, content: "Selamat Datang!", type: 2, colour: 0xFF5285AB, alignment: TextAlign.left),
           ),
         ],
       ),

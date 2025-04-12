@@ -1,8 +1,6 @@
 import 'package:arunika/Component/text_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class DrawerDef extends StatefulWidget {
   const DrawerDef({super.key});
@@ -15,7 +13,6 @@ class _DrawerDefState extends State<DrawerDef> {
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
-    final CollectionReference collectionReference = FirebaseFirestore.instance.collection('UserData').doc('${user?.email}').collection('Username');
 
     return Drawer(
       backgroundColor: Colors.white,
@@ -76,8 +73,8 @@ class _DrawerDefState extends State<DrawerDef> {
               onTap: () async{
                 var route = ModalRoute.of(context);
 
-                if(route?.settings.name != "/literaKum"){
-                  Navigator.pushReplacementNamed(context, "/literaKum");
+                if(route?.settings.name != "/profil"){
+                  Navigator.pushReplacementNamed(context, "/profil");
                   Scaffold.of(context).closeDrawer();
                 }else{
                   Scaffold.of(context).closeDrawer();

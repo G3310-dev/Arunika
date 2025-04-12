@@ -1,4 +1,3 @@
-import 'package:arunika/Page/disabilitas.dart';
 import 'package:camera_platform_interface/src/types/camera_description.dart';
 import 'package:flutter/material.dart';
 
@@ -36,14 +35,17 @@ class GetStarted extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 10,),
-                    Container(
-                      width: double.infinity,
-                      height: MediaQuery.sizeOf(context).height*0.45,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(image: AssetImage("asset/image/started.png",),
-                            fit: BoxFit.fill,
-                            alignment: Alignment.topCenter,
-                          )
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, '/disabilitas'),
+                      child: Container(
+                        width: double.infinity,
+                        height: MediaQuery.sizeOf(context).height*0.45,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(image: AssetImage("asset/image/started.png",),
+                              fit: BoxFit.fill,
+                              alignment: Alignment.topCenter,
+                            )
+                        ),
                       ),
                     )
                   ],
@@ -93,11 +95,7 @@ class GetStarted extends StatelessWidget {
                         width: MediaQuery.sizeOf(context).width*0.9,
                         height: MediaQuery.sizeOf(context).height*0.05,
                         type: 2,
-                        onTap: (){
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => const Disabilitas()),
-                          );
-                        },
+                        onTap: () => Navigator.pushNamed(context, '/disabilitas'),
                         text: "Layanan Disabilitas", size: 16),
                   ),
                 ],

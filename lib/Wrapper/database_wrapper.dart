@@ -20,6 +20,18 @@ class DbWrapper{
       log(e.toString());
     }
   }
+  createMed(nama, deskripsi) async {
+    try{
+      _fire.collection("Obat").doc(FirebaseAuth.instance.currentUser!.uid).collection("Jadwal Obat").add({
+        "Email": FirebaseAuth.instance.currentUser!.email,
+        "Judul": nama,
+        "Deskripsi": deskripsi,
+        "timestamp": Timestamp.now()
+      });
+    } catch(e){
+      log(e.toString());
+    }
+  }
   deletePattern() async {
     try {
       final collectionRef = FirebaseFirestore.instance.collection("Data").doc(FirebaseAuth.instance.currentUser!.uid).collection("PolaHidup");

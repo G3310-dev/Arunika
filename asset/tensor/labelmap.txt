@@ -86,6 +86,6 @@ buku
 jam
 vas
 gunting
-boneka beruang
+boneka
 pengering rambut
 sikat gigi

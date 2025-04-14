@@ -1,6 +1,9 @@
 # Arunika
 An AI-powered health monitoring app that provides personalized lifestyle recommendations, medication reminders, and online doctor consultations. With accessibility features for people with disabilities, it helps users manage their health anytime, anywhere.
 
+## APK FILE: 
+https://drive.google.com/drive/folders/1CqzTLFtIvYxWbwOCFyM3KgOEzfmrylpW?usp=drive_link
+
 ## Team Member:
 - Glenn Wilson Hardian
 - Vinsesius Ferer Banyu Anaro

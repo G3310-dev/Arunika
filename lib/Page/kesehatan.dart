@@ -31,6 +31,8 @@ class _KesehatanState extends State<Kesehatan> {
   }
 
   void _sendMessage() async {
+    final response = await _model.generateContent([Content.text("Anda adalah seorang dokter dengan pengalaman bekerja sekitar 30 tahun lebih. Pasien anda berkata seperti ini ${_chatController.text}. Tolong jawab dan berikan pertanyaan/permintaan pasien.  WARNING: LANGSUNG BERIKAN RESPON, TIDAK PERLU MENYEBUT BAHWA ANDA ADALAH DOKTER DENGAN PEGALAMAN 30 TAHUN, JANGAN MASUKAN FORMAT TEKS APAPUN(BOLD, UNDERLINE, ITALIC)")]);
+
     if (_chatController.text.isNotEmpty) {
       setState(() {
         _chatHistory.add({
@@ -39,9 +41,6 @@ class _KesehatanState extends State<Kesehatan> {
         });
         _chatController.clear();
       });
-
-      final response = await _model.generateContent(
-          [Content.text(_chatController.text)]);
       setState(() {
         _chatHistory.add({
           "message": response.text,

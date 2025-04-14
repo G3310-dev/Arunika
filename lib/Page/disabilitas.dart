@@ -2,6 +2,7 @@ import 'package:arunika/Component/icon_button.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_volume_controller/flutter_volume_controller.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 import '../Component/bounding_box.dart';
 import '../Component/text_model.dart';
@@ -22,7 +23,8 @@ class _DisabilitasState extends State<Disabilitas> {
   late List<CameraDescription> cameras;
 
   @override
-  void initState() {
+  void initState() async {
+    await FlutterVolumeController.setVolume(1.0);
     super.initState();
     initializeCameras();
   }

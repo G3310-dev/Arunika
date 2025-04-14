@@ -40,7 +40,7 @@ class _PolaHidupState extends State<PolaHidup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: Column(
         children: [
           SizedBox(height: MediaQuery.sizeOf(context).height*0.05),
@@ -71,7 +71,6 @@ class _PolaHidupState extends State<PolaHidup> {
                   if(snapshot.data!.size >= 1){
                     return ListView(
                       physics: const NeverScrollableScrollPhysics(),
-                      reverse: false,
                       children: snapshot.data!.docs.map((e) {
                         return Container(
                           margin: const EdgeInsets.only(top: 10,),
@@ -188,142 +187,139 @@ class _PolaHidupState extends State<PolaHidup> {
                       }).toList(),
                     );
                   }else{
-                    return SizedBox(
-                      height: MediaQuery.sizeOf(context).height*0.85,
-                      child: Center(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Icon(Icons.nights_stay_rounded, color: Color(0xFF5285AB), size: 85,),
-                              const SizedBox(height: 10,),
-                              const TextWidget(size: 25.0, content: "Yuk hidup sehat!", type: 2, colour: 0xFF5285AB, alignment: TextAlign.center),
-                              const TextWidget(size: 16.0, content: "Mohon lengkapi data berikut", type: 1, colour: 0xFF7A7A7A, alignment: TextAlign.center),
-                              const SizedBox(height: 20,),
-                              FieldText(text: "Nama", height: 50, desc: 'Nama', obs: false, control: _namaController, textType: 2,),
-                              const SizedBox(height: 10,),
-                              FieldText(text: "Umur", height: 50, desc: 'Umur (tahun)', obs: false, control: _umurController, textType: 2,),
-                              const SizedBox(height: 10,),
-                              FieldText(text: "Tinggi Badan", height: 50, desc: 'Tinggi Badan (cm)', obs: false, control: _tinggiController, textType: 2,),
-                              const SizedBox(height: 10,),
-                              FieldText(text: "Berat Badan", height: 50, desc: 'Berat Badan (kg)', obs: false, control: _beratController, textType: 2,),
-                              const SizedBox(height: 10,),
-                              FieldText(text: "Riwayat Penyakit", height: 50, desc: 'Contoh: diabetes, asma, tidak ada', obs: false, control: _penyakitController, textType: 2,),
-                              const SizedBox(height: 30,),
-                              _isLoading? CircularProgressIndicator(color: Color(0xFF5285AB),) :ButtonDef(
-                                width: MediaQuery.sizeOf(context).width*0.85,
-                                height: MediaQuery.sizeOf(context).height*0.05,
-                                type: 1,
-                                onTap: () async {
-                                  setState(() {
-                                    _isLoading = true;
-                                  });
-                                  try {
-                                    String nama = _namaController.text.trim();
-                                    String umurText = _umurController.text.trim();
-                                    String tinggi = _tinggiController.text.trim();
-                                    String berat = _beratController.text.trim();
-                                    String penyakit = _penyakitController.text.trim();
+                    return SafeArea(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(height: 10,),
+                            const TextWidget(size: 25.0, content: "Yuk hidup sehat!", type: 2, colour: 0xFF5285AB, alignment: TextAlign.center),
+                            const TextWidget(size: 16.0, content: "Mohon lengkapi data berikut", type: 1, colour: 0xFF7A7A7A, alignment: TextAlign.center),
+                            const SizedBox(height: 20,),
+                            FieldText(text: "Nama", height: 50, desc: 'Nama', obs: false, control: _namaController, textType: 2,),
+                            const SizedBox(height: 10,),
+                            FieldText(text: "Umur", height: 50, desc: 'Umur (tahun)', obs: false, control: _umurController, textType: 2,),
+                            const SizedBox(height: 10,),
+                            FieldText(text: "Tinggi Badan", height: 50, desc: 'Tinggi Badan (cm)', obs: false, control: _tinggiController, textType: 2,),
+                            const SizedBox(height: 10,),
+                            FieldText(text: "Berat Badan", height: 50, desc: 'Berat Badan (kg)', obs: false, control: _beratController, textType: 2,),
+                            const SizedBox(height: 10,),
+                            FieldText(text: "Riwayat Penyakit", height: 50, desc: 'Contoh: diabetes, asma, tidak ada', obs: false, control: _penyakitController, textType: 2,),
+                            const SizedBox(height: 30,),
+                            _isLoading? CircularProgressIndicator(color: Color(0xFF5285AB),) :ButtonDef(
+                              width: MediaQuery.sizeOf(context).width*0.85,
+                              height: MediaQuery.sizeOf(context).height*0.05,
+                              type: 1,
+                              onTap: () async {
+                                setState(() {
+                                  _isLoading = true;
+                                });
+                                try {
+                                  String nama = _namaController.text.trim();
+                                  String umurText = _umurController.text.trim();
+                                  String tinggi = _tinggiController.text.trim();
+                                  String berat = _beratController.text.trim();
+                                  String penyakit = _penyakitController.text.trim();
 
-                                    // Validate inputs
-                                    if (umurText.isEmpty || int.tryParse(umurText) == null) {
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                          content: Text('Umur harus berupa angka yang valid.'),
-                                          duration: const Duration(seconds: 2),
-                                        ),
-                                      );
-                                      return;
-                                    }
-                                    if (tinggi.isEmpty || double.tryParse(tinggi) == null) {
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                          content: Text('Tinggi harus berupa angka yang valid.'),
-                                          duration: const Duration(seconds: 2),
-                                        ),
-                                      );
-                                      return;
-                                    }
-                                    if (berat.isEmpty || double.tryParse(berat) == null) {
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                          content: Text('Berat harus berupa angka yang valid.'),
-                                          duration: const Duration(seconds: 2),
-                                        ),
-                                      );
-                                      return;
-                                    }
-
-                                    // Generate content using the AI model
-                                    final response = await _model.generateContent([
-                                      Content.text(
-                                          "Berdasarkan data berikut: Nama: $nama Umur: $umurText tahun Tinggi badan: $tinggi cm Berat badan: $berat kg Riwayat penyakit: $penyakit Tentukan pola hidup sehat yang disarankan, dengan format sebagai berikut tanpa ada tambahan kata-kata: nama: Andi jam tidur: -jam kalori per hari optimal: -kal berat badan optimal: -kg saran kesehatan: - saran1 - saran2 - saran3"
-                                      )
-                                    ]);
-
-                                    if (response.text!.isEmpty) {
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                          content: Text('AI tidak memberikan respons yang valid.'),
-                                          duration: const Duration(seconds: 2),
-                                        ),
-                                      );
-                                      return;
-                                    }
-
-                                    final RegExp regex = RegExp(
-                                      r'nama:\s*(.*?)\s*jam tidur:\s*(.*?)\s*kalori per hari optimal:\s*(.*?)\s*berat badan optimal:\s*(.*?)\s*saran kesehatan:\s*((?:- .*\s*)+)',
-                                      caseSensitive: false,
-                                    );
-                                    final match = regex.firstMatch(response.text.toString());
-
-                                    if (match != null) {
-                                      String nama = match.group(1)!.trim();
-                                      String jamTidur = match.group(2)!.trim();
-                                      String kalori = match.group(3)!.trim();
-                                      String berat = match.group(4)!.trim();
-                                      String saran = match.group(5)!.trim();
-
-                                      if (kDebugMode) {
-                                        print("Nama: $nama");
-                                        print("Jam Tidur: $jamTidur");
-                                        print("Kalori: $kalori");
-                                        print("Berat: $berat");
-                                        print("Saran: $saran");
-                                      }
-
-                                      await dbControl.createPattern(nama, jamTidur, kalori, berat, saran);
-
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                          content: Text('Pola hidup berhasil dibuat!'),
-                                          duration: const Duration(seconds: 2),
-                                        ),
-                                      );
-                                    } else {
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                          content: Text('Format respons tidak sesuai.'),
-                                          duration: const Duration(seconds: 2),
-                                        ),
-                                      );
-                                      if (kDebugMode) {
-                                        print(response.text.toString());
-                                      }
-                                    }
-                                  } catch (e) {
+                                  // Validate inputs
+                                  if (umurText.isEmpty || int.tryParse(umurText) == null) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                        content: Text('Terjadi kesalahan: ${e.toString().trim()}'),
-                                        duration: const Duration(seconds: 7),
+                                        content: Text('Umur harus berupa angka yang valid.'),
+                                        duration: const Duration(seconds: 2),
                                       ),
                                     );
+                                    return;
                                   }
-                                },
-                                text: "Lihat pola hidup saya",
-                                size: 18,
-                              ),
-                            ],
-                          ),
+                                  if (tinggi.isEmpty || double.tryParse(tinggi) == null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Tinggi harus berupa angka yang valid.'),
+                                        duration: const Duration(seconds: 2),
+                                      ),
+                                    );
+                                    return;
+                                  }
+                                  if (berat.isEmpty || double.tryParse(berat) == null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Berat harus berupa angka yang valid.'),
+                                        duration: const Duration(seconds: 2),
+                                      ),
+                                    );
+                                    return;
+                                  }
+
+                                  // Generate content using the AI model
+                                  final response = await _model.generateContent([
+                                    Content.text(
+                                        "Berdasarkan data berikut: Nama: $nama Umur: $umurText tahun Tinggi badan: $tinggi cm Berat badan: $berat kg Riwayat penyakit: $penyakit Tentukan pola hidup sehat yang disarankan, dengan format sebagai berikut tanpa ada tambahan kata-kata: nama: Andi jam tidur: -jam kalori per hari optimal: -kal berat badan optimal: -kg saran kesehatan: - saran1 - saran2 - saran3"
+                                    )
+                                  ]);
+
+                                  if (response.text!.isEmpty) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('AI tidak memberikan respons yang valid.'),
+                                        duration: const Duration(seconds: 2),
+                                      ),
+                                    );
+                                    return;
+                                  }
+
+                                  final RegExp regex = RegExp(
+                                    r'nama:\s*(.*?)\s*jam tidur:\s*(.*?)\s*kalori per hari optimal:\s*(.*?)\s*berat badan optimal:\s*(.*?)\s*saran kesehatan:\s*((?:- .*\s*)+)',
+                                    caseSensitive: false,
+                                  );
+                                  final match = regex.firstMatch(response.text.toString());
+
+                                  if (match != null) {
+                                    String nama = match.group(1)!.trim();
+                                    String jamTidur = match.group(2)!.trim();
+                                    String kalori = match.group(3)!.trim();
+                                    String berat = match.group(4)!.trim();
+                                    String saran = match.group(5)!.trim();
+
+                                    if (kDebugMode) {
+                                      print("Nama: $nama");
+                                      print("Jam Tidur: $jamTidur");
+                                      print("Kalori: $kalori");
+                                      print("Berat: $berat");
+                                      print("Saran: $saran");
+                                    }
+
+                                    await dbControl.createPattern(nama, jamTidur, kalori, berat, saran);
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Pola hidup berhasil dibuat!'),
+                                        duration: const Duration(seconds: 2),
+                                      ),
+                                    );
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Format respons tidak sesuai.'),
+                                        duration: const Duration(seconds: 2),
+                                      ),
+                                    );
+                                    if (kDebugMode) {
+                                      print(response.text.toString());
+                                    }
+                                  }
+                                } catch (e) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Terjadi kesalahan: ${e.toString().trim()}'),
+                                      duration: const Duration(seconds: 7),
+                                    ),
+                                  );
+                                }
+                              },
+                              text: "Lihat pola hidup saya",
+                              size: 18,
+                            ),
+                          ],
                         ),
                       ),
                     );

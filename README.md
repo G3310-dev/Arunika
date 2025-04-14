@@ -4,6 +4,9 @@ An AI-powered health monitoring app that provides personalized lifestyle recomme
 ## APK FILE: 
 https://drive.google.com/drive/folders/1CqzTLFtIvYxWbwOCFyM3KgOEzfmrylpW?usp=drive_link
 
+## Demo Video:
+https://youtu.be/N7b7T_J8rFY
+
 ## Team Member:
 - Glenn Wilson Hardian
 - Vinsesius Ferer Banyu Anaro

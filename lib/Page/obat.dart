@@ -206,6 +206,8 @@ class _ObatState extends State<Obat> {
                                           frequency: Frequency.daily,
                                         ),
                                       );
+                                      Add2Calendar.addEvent2Cal(event);
+
                                     } catch (e) {
                                       ScaffoldMessenger.of(
                                         context,
